@@ -133,7 +133,7 @@ const scores = {
     "tie": 0
 }
 
-function minimax(boardAI, depth, isMaximizing) {
+function minimax(boardAI, isMaximizing) {
     const result = checkWinner();
     if (result) {
         return scores[result];
@@ -146,7 +146,7 @@ function minimax(boardAI, depth, isMaximizing) {
                 // ESTÀ LLIURE?
                 if (boardAI[r][c] === 0) {
                     boardAI[r][c] = ai;
-                    let score = minimax(boardAI, depth + 1, false);
+                    let score = minimax(boardAI, false);
                     boardAI[r][c] = 0;
                     bestScore = Math.max(score, bestScore);
                 }
@@ -160,7 +160,7 @@ function minimax(boardAI, depth, isMaximizing) {
                 // ESTÀ LLIURE?
                 if (boardAI[r][c] === 0) {
                     boardAI[r][c] = player;
-                    let score = minimax(boardAI, depth + 1, true);
+                    let score = minimax(boardAI, true);
                     boardAI[r][c] = 0;
                     bestScore = Math.min(score, bestScore);
                 }
