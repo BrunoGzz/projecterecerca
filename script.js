@@ -134,9 +134,9 @@ const scores = {
 }
 
 function minimax(boardAI, isMaximizing) {
-    const result = checkWinner();
-    if (result) {
-        return scores[result];
+    const winner = checkWinner();
+    if (winner) {
+        return scores[winner];
     }
 
     if (isMaximizing) {
