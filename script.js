@@ -140,14 +140,23 @@ function minimax(boardAI, isMaximizing) {
     }
 
     if (isMaximizing) {
+        //ESTABLIR LA MILLOR PUNTUACIÓ INICIAL. ES POSA INFINIT PER TAL DE QUE QUALSEVOL ALTRE SIGUI MAJOR/MENOR
         let bestScore = -Infinity;
+
+        //RECÓRRER TOTES LES CASELLES DEL TAULER
         for (let r = 0; r < 3; r++) {
             for (let c = 0; c < 3; c++) {
                 // ESTÀ LLIURE?
                 if (boardAI[r][c] === 0) {
+
+                    //ESCRIURE AL TAULER PROVISIONALMENT LA JUGADA QUE ES VOL COMPROVAR
                     boardAI[r][c] = ai;
+
+                    //TORNAR A TRUCAR A AQUESTA MATEIXA FUNCIÓ (MINIMAX) PER SIMULAR EL MOVIMENT
                     let score = minimax(boardAI, false);
                     boardAI[r][c] = 0;
+
+                    //TRIAR LA MILLOR PUNTUACIÓ ENTRE L'ACTUAL MILLOR PUNTUACIÓ I LA QUE HA SORTIT AMB AQUESTA JUGADA PROVISIONAL
                     bestScore = Math.max(score, bestScore);
                 }
             }
